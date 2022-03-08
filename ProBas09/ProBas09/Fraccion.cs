@@ -4,35 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProBas08
+namespace ProBas09
 {
-    public class Fraccion
+    public class Program
     {
-        #region propiedades
-        public int Numerador { get; set; }
-        public int Denominador { get; set; }
-        #endregion
-        #region métodos
-        public Fraccion()
+        static void Main(string[] args)
         {
-            this.Numerador = 0;
-            this.Denominador = 1;
+            Fraccion A = new Fraccion();
+            Fraccion B = new Fraccion("B", 4,2);
+            Fraccion C = A * B;
+            Fraccion D = A / B;
+            Fraccion E = A + B;
+            Fraccion F = A - B;
 
-        }
-        public Fraccion(int numerador, int denominador)
-        {
-            this.Numerador = numerador;
-            this.Denominador = denominador;
-        }
-        public Fraccion multiplica(Fraccion value)
-        {
-            return new Fraccion(this.Numerador * value.Numerador, this.Denominador * value.Denominador);
-        }
-        public string imprimir()
-        {
-            return $"{this.Numerador}/{this.Denominador}";
-        }
-        #endregion
+            C.NombreOperando = "A*B";
+            D.NombreOperando = "A/B";
+            E.NombreOperando = "A+B";
+            F.NombreOperando = "A-B";
 
+            Console.WriteLine(A.ToString());
+            Console.WriteLine(B.ToString());
+            Console.WriteLine(C.ToString());
+            Console.WriteLine(D.ToString());
+            Console.WriteLine(E.ToString());
+            Console.WriteLine(F.ToString());
+            Console.ReadLine();
+        }
     }
 }
+            

@@ -4,21 +4,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProBas08
+namespace ProBas09
 {
-    internal class Program
+    public class Fraccion
     {
-        static void Main(string[] args)
+        #region propiedades
+        public string NombreOperando { get; set; }
+        public int Numerador { get; set; }
+        public int Denominador { get; set; }
+        #endregion
+
+        #region Métodos
+        public Fraccion()
         {
-            Fraccion A = new Fraccion(1, 2);
-            Fraccion B = new Fraccion(3, 4);
-            Fraccion C = new Fraccion();
-            Console.WriteLine($"A:{A.imprimir()}");
-            Console.WriteLine($"B:{B.imprimir()}");
-            C = A.multiplica(C);
-            Console.WriteLine($"La multiplicación de A*B es:{C}");
-            Console.WriteLine($"Multiplicación de A*B:{A.multiplica(B).imprimir()}");
-            Console.ReadLine();
+            this.NombreOperando = "A";
+            this.Numerador = 3;
+            this.Denominador = 6;
         }
+        public Fraccion(int numerador, int denominador)
+        {
+            this.NombreOperando = "A";
+            this.Numerador = numerador;
+            this.Denominador = denominador;
+        }
+        public Fraccion(string nombreOperador, int numerador, int denominador)
+        {
+            this.NombreOperando = nombreOperador;
+            this.Numerador = numerador;
+            this.Denominador = denominador;
+        }
+        public static Fraccion operator *(Fraccion A, Fraccion B)
+        {
+            return new Fraccion(A.Numerador * B.Numerador, A.Denominador * B.Denominador);
+        }
+        public static Fraccion operator /(Fraccion A, Fraccion B)
+        {
+            return new Fraccion(A.Numerador * B.Denominador, A.Denominador * B.Numerador);
+        }
+        public static Fraccion operator +(Fraccion A, Fraccion B)
+        {
+            return new Fraccion(A.Numerador * B.Denominador + A.Denominador * B.Numerador, A.Denominador * B.Denominador);
+        }
+        public static Fraccion operator -(Fraccion A, Fraccion B)
+        {
+            return new Fraccion(A.Numerador * B.Denominador - A.Denominador * B.Numerador, A.Denominador * B.Denominador);
+        }
+        public override string ToString()
+        {
+            return $"{this.NombreOperando} = {this.Numerador}/{this.Denominador}";
+        }
+        #endregion
+
     }
 }
